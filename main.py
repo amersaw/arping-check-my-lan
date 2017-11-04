@@ -2,7 +2,17 @@ import utils
 import arping
 import logging
 from fileStorage import fileStorage
+import sys
 
+
+def parseArgs(args):
+    import getopt
+    parsedArgs = getopt.getopt(args,'i:')
+    argsDict = {}
+    for i in parsedArgs[0]:
+        if(len(i) > 0):
+            argsDict[i[0]] = i[1]
+    return argsDict
 
 def handleDifferent(fs, mac, ip):
     print('Note: the "{}" machine is now having a new IP address:'.format(mac))
@@ -47,7 +57,12 @@ def handleMissed(fs, mac, ip):
 
 def main():
     logging.basicConfig(level=logging.CRITICAL)
-    iface = utils.getDefInterface()
+
+    argsDic = parseArgs(sys.argv[1:])
+    if '-i' in argsDic and argsDic['-i']:
+        iface = argsDic['-i']
+    else:
+        iface = utils.getDefInterface()
     fs = fileStorage(iface)
     loadingRes = fs.load()
     if(iface != None):
