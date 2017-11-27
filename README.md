@@ -1,4 +1,5 @@
 # Arping Check My LAN
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](LICENSE)
 
 Catch aliens on your LAN easily!
 
@@ -44,3 +45,7 @@ For example, to check for the devices existed in the network same as my device o
 ```
 sudo python main.py -i eth0
 ```
+
+## License
+
+[Apache License 2.0](LICENSE)
